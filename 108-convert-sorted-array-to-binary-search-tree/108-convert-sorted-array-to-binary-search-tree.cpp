@@ -1,17 +1,44 @@
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-class Solution:
-    def sortedArrayToBST(self, nums: List[int]) -> Optional[TreeNode]:
-        n = len(nums)
-        if n == 0 :
-            return None
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+#include <vector>
+
+class Solution {
+public:
+    TreeNode* sortedArrayToBST(vector<int>& nums) {
+        int n =  nums.size();
+        if (n == 0 ){
+            return 0 ;
+        }
+        TreeNode * binary    = Solver(nums,0,n-1);
         
-        mid = n//2 
-        middle =  nums[mid]
-        binary = TreeNode(middle)
-        binary.left , binary.right = self.sortedArrayToBST(nums[:mid]) , self.sortedArrayToBST(nums[mid+1:])
-        return binary
+        return binary;
+    }
+    
+    TreeNode* Solver(vector<int>& nums,int l ,int r ){
+        if (l>r){
+            return nullptr;
+        }
+                
+        int mid =  (l+r+1)/2;
+        int middle = nums[mid];
+        
+        TreeNode * binary    = new TreeNode(middle);
+        if(l ==  r){
+            return binary;
+        }
+        binary->left =  Solver(nums,l,mid-1);
+        binary->right =  Solver(nums,mid+1,r);
+        return binary;
+        
+    }
+    
+};
