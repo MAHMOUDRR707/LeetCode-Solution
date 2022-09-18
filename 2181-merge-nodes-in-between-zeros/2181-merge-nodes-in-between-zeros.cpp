@@ -14,20 +14,22 @@ public:
         int res = 0;
         vector<int> ans;
         ListNode* cur = head;
-        while(cur != NULL){
-            if(cur ->val == 0 && res != 0){
-                ans.push_back(res);
-                res = 0;
-            }
-            res += cur->val ;
-            cur = cur->next;
-        }
         ListNode* result = new ListNode();
         ListNode*  current = result;
-        for(auto &i : ans){
-            result->next =  new ListNode(i);
-            result = result->next;
+        while(cur != NULL){
+            if(cur ->val == 0 && res != 0){
+                result->next =  new ListNode(res);
+                result =  result->next;
+                res = 0;
+            }
+            else{
+                res += cur->val;
+                cur = cur->next;
+            }
         }
+        
+      
+        
         return current->next;
     }
 };
