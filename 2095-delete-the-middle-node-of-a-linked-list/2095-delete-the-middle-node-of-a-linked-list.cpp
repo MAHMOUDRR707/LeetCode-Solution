@@ -18,7 +18,7 @@ public:
             cur = cur->next;
         }
          int mid =  count/2;
-        if(mid == 0) return NULL;
+         if(mid == 0) return NULL;
          ListNode * current =  head ;
          ListNode * prev = NULL;
          
