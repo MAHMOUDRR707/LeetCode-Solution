@@ -2,12 +2,16 @@ class Solution {
 public:
     int maximum69Number (int num) {
         string x =  to_string(num);
-        for(int i = 0 ; i <  x.size() ; i++){
-            if(x[i] == '6') {
-                x[i] = '9';
+        vector<char> res;
+        for(auto &i : x) res.push_back(i);
+        for(int i = 0 ; i <  res.size() ; i++){
+            if(res[i] == '6') {
+                res[i] = '9';
                 break;}
         }
-        return stoi(x);
+        string ans = "";
+        for(auto &i : res) ans+= i;
+        return stoi(ans);
         
     }
 };
