@@ -8,6 +8,7 @@ public:
               ans++;
               res += i;
           }
+          else  return ans;
       }
         return ans;
     }
