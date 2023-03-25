@@ -2,12 +2,9 @@ class Solution {
 public:
     bool containsDuplicate(vector<int>& nums) {
      
-        map<int,int> res;
-        for(auto &i: nums){
-            res[i] ++ ;
-        }
-        for(auto &i: res){
-            if (res[i.first] > 1 ) return true;
+        sort(nums.begin(),nums.end());
+        for(int i = 0 ; i <  nums.size()-1;i++){
+            if (nums[i+1] == nums[i] ) return true;
         }
         
         return false;
