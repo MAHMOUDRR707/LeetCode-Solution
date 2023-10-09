@@ -1,21 +1,16 @@
 class Solution:
     def searchRange(self, nums, target):
         n =  len(nums) 
-        f = 0
-        l =  n-1
-        while l >= f :
-            mid =  (l+f)//2  
-            if nums[mid] == target :
-                first ,last =  mid,mid
-                while last != n- 1 and nums[mid] == nums[last+1]  :
-                    last +=1
-                while  first != 0 and nums[mid] == nums[first-1] :
-                    first -= 1 
-    
-                return [first,last]
-            
-            elif nums[mid] <  target :
-                f =  mid+1
-            elif nums[mid] > target  :
-                l =  mid-1
-        return [-1,-1]
+        res = []
+        for i in range(len(nums)):
+            if nums[i] ==  target :
+                res.append(i)
+        
+        if len(res) == 0 :
+            return [-1,-1]
+        
+        if len(res) < 2 : 
+            res.append(res[0])
+        if len(res) >2 :
+            res = [res[0],res[-1]]
+        return res
